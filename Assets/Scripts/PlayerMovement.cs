@@ -37,13 +37,14 @@ namespace DefaultNamespace
             
             if (Input.GetKeyDown(KeyCode.LeftAlt))
                 m_croach = true;
-            
+
             if (Input.GetMouseButtonDown(0))
                 m_animator.SetTrigger("Punch");
         }
 
         public void CreateDamageBlast()
         {
+            GameManager.instance.m_shakeCamera.Shake();
             m_damageBlast.CreateDamage(5, 0.5f);
         }
 
