@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -9,6 +10,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private CharacterController2D m_characterController2D;
         [SerializeField] private float m_runSpeed;
+        [SerializeField] private DamageBlast m_damageBlast;
 
         private Animator m_animator;
         private Rigidbody2D m_rigidbody;
@@ -35,6 +37,14 @@ namespace DefaultNamespace
             
             if (Input.GetKeyDown(KeyCode.LeftAlt))
                 m_croach = true;
+            
+            if (Input.GetMouseButtonDown(0))
+                m_animator.SetTrigger("Punch");
+        }
+
+        public void CreateDamageBlast()
+        {
+            m_damageBlast.CreateDamage(5, 0.5f);
         }
 
         public void SetInAirStatus()
@@ -51,7 +61,7 @@ namespace DefaultNamespace
                 m_animator.SetTrigger("Landing");
                 m_inAir = false;
             }
-               
+
             m_jump = false;
         }
     }
