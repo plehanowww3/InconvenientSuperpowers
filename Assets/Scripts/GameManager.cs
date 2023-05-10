@@ -7,6 +7,7 @@ namespace DefaultNamespace
     {
         public static GameManager instance;
         public CameraShake m_shakeCamera;
+        public Transform m_PlayerTransform;
         
         private void Awake()
         {

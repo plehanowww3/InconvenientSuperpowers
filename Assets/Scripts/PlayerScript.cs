@@ -1,12 +1,14 @@
-using System;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using DefaultNamespace.Data;
+using DefaultNamespace.Interfaces;
+using Interfaces;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
-    public class PlayerMovement: MonoBehaviour
+    public class PlayerScript: MonoBehaviour
     {
         [SerializeField] private CharacterController2D m_characterController2D;
         [SerializeField] private float m_runSpeed;
@@ -19,10 +21,19 @@ namespace DefaultNamespace
         private bool m_croach = false;
         private bool m_inAir = false;
 
+        private List<IEffectData> m_currentEffects = new List<IEffectData>();
+
         private void Awake()
         {
             m_rigidbody = GetComponent<Rigidbody2D>();
             m_animator = GetComponent<Animator>();
+
+            var freezeEffectData = new FreezeData(0, 3, 3);
+            var firingEffectData = new FiringData(0, 3, 1, 5);
+            m_currentEffects.Add(freezeEffectData);
+            m_currentEffects.Add(firingEffectData);
+
+            GameManager.instance.m_PlayerTransform = transform;
         }
 
         private void Update()
@@ -45,7 +56,7 @@ namespace DefaultNamespace
         public void CreateDamageBlast()
         {
             GameManager.instance.m_shakeCamera.Shake();
-            m_damageBlast.CreateDamage(5, 0.5f);
+            m_damageBlast.CreateDamage(5, 0.5f, m_currentEffects);
         }
 
         public void SetInAirStatus()
