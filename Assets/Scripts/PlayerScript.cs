@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace.Data;
 using DefaultNamespace.Interfaces;
 using Interfaces;
@@ -14,9 +16,17 @@ namespace DefaultNamespace
         [SerializeField] private float m_runSpeed;
         [SerializeField] private DamageBlast m_damageBlast;
 
+        private Health m_health;
+        
+        private int m_damage = 5;
+        private float m_attackRaduis = 1;
+        private float m_attackRange;
+        private float m_attackSpeed;
+
         private Animator m_animator;
         private Rigidbody2D m_rigidbody;
         private float m_horizontalMove;
+        
         private bool m_jump = false;
         private bool m_croach = false;
         private bool m_inAir = false;
@@ -27,13 +37,44 @@ namespace DefaultNamespace
         {
             m_rigidbody = GetComponent<Rigidbody2D>();
             m_animator = GetComponent<Animator>();
+            
+            GameManager.instance.m_PlayerTransform = transform;
+            GameManager.instance.m_playerScript = this;
 
             var freezeEffectData = new FreezeData(0, 3, 3);
             var firingEffectData = new FiringData(0, 3, 1, 5);
             m_currentEffects.Add(freezeEffectData);
             m_currentEffects.Add(firingEffectData);
+        }
 
-            GameManager.instance.m_PlayerTransform = transform;
+        public void AddEffect(IEffectData _effect)
+        {
+            IEffectData newEffect = null;
+            
+            switch (_effect)
+            {
+                case AttackData:
+                    AddDamageEffect((AttackData) _effect);
+                    return;
+                case HealthData:
+                    AddHealthEffect((HealthData) _effect);
+                    return;
+                
+                case FiringData:
+                    newEffect = (FiringData) _effect;
+                    break;
+                case FreezeData:
+                    newEffect = (FreezeData) _effect;
+                    break;
+            }
+            if (m_currentEffects.OfType<FiringData>().Any())
+            {
+                var index = m_currentEffects.IndexOf(newEffect);
+                m_currentEffects[index] = newEffect;
+                return;
+            }
+     
+            m_currentEffects.Add(newEffect);
         }
 
         private void Update()
@@ -56,12 +97,20 @@ namespace DefaultNamespace
         public void CreateDamageBlast()
         {
             GameManager.instance.m_shakeCamera.Shake();
-            m_damageBlast.CreateDamage(5, 0.5f, m_currentEffects);
+            m_damageBlast.CreateDamage(m_damage, 0.5f, m_currentEffects);
         }
 
-        public void SetInAirStatus()
+        private void AddDamageEffect(AttackData _attackData)
         {
-            m_inAir = true;
+            m_damage += _attackData.AddDamage;
+            m_attackSpeed += _attackData.AddAttackSpeed;
+            m_attackRaduis += _attackData.AddRadius;
+        }
+        
+        private void AddHealthEffect(HealthData _healthData)
+        {
+            m_health.IncreaseMaxHealth(_healthData.AddMaxHp);
+            m_health.IncreaseHealth(_healthData.InstaHeal);
         }
 
         private void FixedUpdate()

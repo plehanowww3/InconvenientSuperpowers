@@ -35,6 +35,9 @@ public class Health : MonoBehaviour, IHealth
         CurrentHealthProperty = CurrentHealth;
     }
 
+    public void IncreaseMaxHealth(int _value) => MaxHealth += _value;
+    public void DecreaseMaxHealth(int _value) => MaxHealth -= _value;
+
     private void Awake()
     {
         CurrentHealth = MaxHealth;

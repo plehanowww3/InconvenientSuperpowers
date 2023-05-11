@@ -1,5 +1,8 @@
+using System;
+
 namespace DefaultNamespace.Data
 {
+    [Serializable]
     public struct FiringData: IEffectData
     {
         public float Delay;

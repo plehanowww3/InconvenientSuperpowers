@@ -1,5 +1,8 @@
+using System;
+
 namespace DefaultNamespace.Data
 {
+    [Serializable]
     public struct FreezeData: IEffectData
     {
         public float Delay;
