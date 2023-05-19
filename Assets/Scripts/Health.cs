@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
-using System.Collections;
 using Interfaces;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour, IHealth
 {
@@ -10,6 +9,7 @@ public class Health : MonoBehaviour, IHealth
     [SerializeField] private int numberOfFlashes;
     [SerializeField] private Behaviour[] components;
     [SerializeField] private int CurrentHealthProperty;
+    [SerializeField] private Image m_hpFiller;
     private Animator anim;
     private bool dead;
     private SpriteRenderer spriteRend;
@@ -49,6 +49,12 @@ public class Health : MonoBehaviour, IHealth
         if (invulnerable) return;
         CurrentHealth = (int)Mathf.Clamp(CurrentHealth - _damage, 0, MaxHealth);
 
+        m_hpFiller.fillAmount = 1f * CurrentHealth / MaxHealth;
+
+        if (CurrentHealth <= 0)
+        {
+            
+        }
         /*if (currentHealth > 0)
         {
             anim.SetTrigger("hurt");
@@ -69,7 +75,7 @@ public class Health : MonoBehaviour, IHealth
         }*/
     }
     
-    private IEnumerator Invunerability()
+    /*private IEnumerator Invunerability()
     {
         invulnerable = true;
         Physics2D.IgnoreLayerCollision(10, 11, true);
@@ -82,5 +88,5 @@ public class Health : MonoBehaviour, IHealth
         }
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
-    }
+    }*/
 }

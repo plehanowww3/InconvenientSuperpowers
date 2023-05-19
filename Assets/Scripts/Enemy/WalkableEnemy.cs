@@ -5,6 +5,10 @@ namespace DefaultNamespace.Enemy
 {
     public class WalkableEnemy: MonoBehaviour
     {
+        [SerializeField] private int m_gainExp;
+        [SerializeField] private float m_distanceToGo;
+        [SerializeField] private float m_distanceToAttack;
+        [SerializeField] private Animator m_animator;
         private const float ForcePower = 10f;
 
         public new Rigidbody2D rigidbody;
@@ -32,10 +36,18 @@ namespace DefaultNamespace.Enemy
 
         private void FixedUpdate() 
         {
-            var desiredVelocity = (Vector2)(m_playerTransform.position - transform.position) * speed;
-            var deltaVelocity = desiredVelocity - rigidbody.velocity;
-            Vector3 moveForce = deltaVelocity * (force * ForcePower * Time.fixedDeltaTime);
-            rigidbody.AddForce(moveForce);
+            if (Vector2.Distance(gameObject.transform.position, m_playerTransform.position) <= m_distanceToGo)
+            {
+                var desiredVelocity = (Vector2)(m_playerTransform.position - transform.position) * speed;
+                var deltaVelocity = desiredVelocity - rigidbody.velocity;
+                Vector3 moveForce = deltaVelocity * (force * ForcePower * Time.fixedDeltaTime);
+                rigidbody.AddForce(moveForce);
+                
+                if (Vector2.Distance(gameObject.transform.position, m_playerTransform.position) <= m_distanceToAttack)
+                {
+                    
+                }
+            }
         }
     }
 }

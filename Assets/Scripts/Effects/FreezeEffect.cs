@@ -7,28 +7,27 @@ namespace DefaultNamespace.Interfaces
 {
     public class FreezeEffect: MonoBehaviour, IEffect
     {
-        [SerializeField] private ParticleSystem m_effect;
-        private FreezeData m_freezeData;
+        private FrostData _frostData;
 
-        public void InitFreezable(FreezeData _data)
+        public void InitFreezable(FrostData _data)
         {
-            m_freezeData = _data;
+            _frostData = _data;
         }
 
         private void Start()
         {
-            Invoke("StartEffect", m_freezeData.Delay);
-            Invoke("StopEffect", m_freezeData.Duration);
+            Invoke("StartEffect", _frostData.Delay);
+            Invoke("StopEffect", _frostData.Duration);
         }
 
         public void StartEffect()
         {
-            transform.GetComponent<IMovable>().DecreaseMoveSpeed(m_freezeData.FreezeIndex);
+            transform.GetComponent<IMovable>().DecreaseMoveSpeed(_frostData.FreezeIndex);
         }
 
         public void StopEffect()
         {
-            transform.GetComponent<IMovable>().IncreaseMoveSpeed(m_freezeData.FreezeIndex);
+            transform.GetComponent<IMovable>().IncreaseMoveSpeed(_frostData.FreezeIndex);
             Destroy(this);
         }
     }

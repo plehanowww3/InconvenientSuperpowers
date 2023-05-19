@@ -31,7 +31,7 @@ namespace DefaultNamespace
         private bool m_croach = false;
         private bool m_inAir = false;
 
-        private List<IEffectData> m_currentEffects = new List<IEffectData>();
+        private List<EffectData> m_currentEffects = new List<EffectData>();
 
         private void Awake()
         {
@@ -40,16 +40,11 @@ namespace DefaultNamespace
             
             GameManager.instance.m_PlayerTransform = transform;
             GameManager.instance.m_playerScript = this;
-
-            var freezeEffectData = new FreezeData(0, 3, 3);
-            var firingEffectData = new FiringData(0, 3, 1, 5);
-            m_currentEffects.Add(freezeEffectData);
-            m_currentEffects.Add(firingEffectData);
         }
 
-        public void AddEffect(IEffectData _effect)
+        public void AddEffect(EffectData _effect)
         {
-            IEffectData newEffect = null;
+            EffectData newEffect = null;
             
             switch (_effect)
             {
@@ -63,8 +58,8 @@ namespace DefaultNamespace
                 case FiringData:
                     newEffect = (FiringData) _effect;
                     break;
-                case FreezeData:
-                    newEffect = (FreezeData) _effect;
+                case FrostData:
+                    newEffect = (FrostData) _effect;
                     break;
             }
             if (m_currentEffects.OfType<FiringData>().Any())
@@ -75,6 +70,11 @@ namespace DefaultNamespace
             }
      
             m_currentEffects.Add(newEffect);
+        }
+        
+        public void SetInAirStatus()
+        {
+            m_inAir = true;
         }
 
         private void Update()

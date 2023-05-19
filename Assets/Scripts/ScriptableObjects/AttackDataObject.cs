@@ -1,17 +1,13 @@
+using DefaultNamespace.Abstract;
 using DefaultNamespace.Data;
 using Interfaces;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace DefaultNamespace.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "AttackData", menuName = "ScriptableObjects/AttackData", order = 3)]
-    public class AttackDataObject: ScriptableObject, ISkillUpgrade
+    public class AttackDataObject: EffectDataAbstract
     {
-        public AttackData m_attackData;
-
-        public void Upgrade()
-        {
-            
-        }
+        public AttackData m_effectData;
     }
 }
