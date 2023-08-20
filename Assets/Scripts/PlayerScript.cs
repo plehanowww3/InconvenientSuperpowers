@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Data;
-using DefaultNamespace.Interfaces;
-using Interfaces;
 using UnityEngine;
 
 namespace DefaultNamespace
