@@ -53,8 +53,9 @@ namespace DefaultNamespace
                 
                 m_currentExp += _value - lastExp;
                 m_currentLvl++;
+                m_currentExp = 0;
                 
-                AudioSource.PlayClipAtPoint(m_lvlUpAudio, GameManager.instance.m_PlayerTransform.position);
+                AudioSource.PlayClipAtPoint(m_lvlUpAudio, instance.m_PlayerTransform.position);
                 m_skillHolderView.ShowPanel();
                 AddExpirience(lastExp);
                 return;

@@ -13,9 +13,13 @@ namespace DefaultNamespace.Data
         public float AddHitPercent;
         public ParticleSystem ParticleSystem;
 
-        public FiringData(){}
+        public FiringData()
+        {
+            SetData(this);
+        }
         public FiringData(float _delay, float _duration, float _rate, int _damage, float _hitPercent)
         {
+            SetData(this);
             Delay = _delay;
             Duration = _duration;
             FlameRate = _rate;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DefaultNamespace.Abstract;
 using UnityEngine;
@@ -12,11 +11,6 @@ namespace DefaultNamespace.ViewsUi
         [SerializeField] private Animator m_animator;
 
         [SerializeField] private List<SkillScriptableObjectAbstract> m_skills;
-
-        private void Awake()
-        {
-            ClosePanel();
-        }
 
         public void SetSkills()
         {

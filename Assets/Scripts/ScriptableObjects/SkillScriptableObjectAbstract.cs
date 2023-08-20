@@ -2,11 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Data;
-using DefaultNamespace.ScriptableObjects;
-using Interfaces;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.TerrainTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +38,12 @@ namespace DefaultNamespace.Abstract
                     CheckForData<FrostData>(new FrostData());
                     break;
             }
+        }
+
+        public void Upgrade()
+        {
+            foreach (var effect in m_effects)
+                effect.Upgrade();
         }
         
         private void OnEnable()

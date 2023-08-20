@@ -5,14 +5,10 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour, IHealth
 {
     [SerializeField] private int MaxHealthProperty;
-    [SerializeField] private float iFramesDuration;
-    [SerializeField] private int numberOfFlashes;
-    [SerializeField] private Behaviour[] components;
     [SerializeField] private int CurrentHealthProperty;
     [SerializeField] private Image m_hpFiller;
     private Animator anim;
     private bool dead;
-    private SpriteRenderer spriteRend;
     private bool invulnerable;
     
     public int CurrentHealth { get; set; }
@@ -42,7 +38,6 @@ public class Health : MonoBehaviour, IHealth
     {
         CurrentHealth = MaxHealth;
         anim = GetComponent<Animator>();
-        spriteRend = GetComponent<SpriteRenderer>();
     }
     public void TakeDamage(float _damage)
     {

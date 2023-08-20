@@ -10,9 +10,13 @@ namespace DefaultNamespace.Data
         public float AddRadius;
         public float Range;
 
-        public AttackData(){}
+        public AttackData()
+        {
+             SetData(this);
+        }
         public AttackData(int _addDamage, float _addAttackSpeed, float _addRadius, float _addRange)
         {
+            SetData(this);
             AddDamage = _addDamage;
             AddAttackSpeed = _addAttackSpeed;
             AddRadius = _addRadius;
