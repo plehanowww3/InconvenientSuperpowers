@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a47869107eb42c1ae8b3b075f6cc0d9, type: 3}
+  m_Name: EffectData 2
+  m_EditorClassIdentifier: 
+  Name: 222222
+  Description: asdasdas
+  SkillId: 
+  Level: 
+  n_effectsEnum: 8
+  m_effects:
+  - rid: 7235059627821891627
+  - rid: 7235059773587849217
+  references:
+    version: 2
+    RefIds:
+    - rid: 7235059627821891627
+      type: {class: AttackData, ns: DefaultNamespace.Data, asm: Assembly-CSharp}
+      data:
+        AddDamage: 8
+        AddAttackSpeed: 88
+        AddRadius: 8
+        Range: 88
+    - rid: 7235059773587849217
+      type: {class: FrostData, ns: DefaultNamespace.Data, asm: Assembly-CSharp}
+      data:
+        Delay: 88
+        Duration: 888
+        FreezeIndex: 88
+        AddHitPercent: 8888
+        ParticleSystem: {fileID: 0}
