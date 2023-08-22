@@ -21,7 +21,7 @@ namespace DefaultNamespace.Enemy
 
         private void Start()
         {
-            m_playerTransform = GameManager.instance.m_PlayerTransform;
+           // m_playerTransform = GameManager.instance.m_PlayerTransform;
         }
 
         public void MoveTo (Vector2 direction) 
@@ -36,7 +36,7 @@ namespace DefaultNamespace.Enemy
 
         private void FixedUpdate() 
         {
-            if (Vector2.Distance(gameObject.transform.position, m_playerTransform.position) <= m_distanceToGo)
+            /*if (Vector2.Distance(gameObject.transform.position, m_playerTransform.position) <= m_distanceToGo)
             {
                 var desiredVelocity = (Vector2)(m_playerTransform.position - transform.position) * speed;
                 var deltaVelocity = desiredVelocity - rigidbody.velocity;
@@ -47,7 +47,7 @@ namespace DefaultNamespace.Enemy
                 {
                     
                 }
-            }
+            }*/
         }
     }
 }

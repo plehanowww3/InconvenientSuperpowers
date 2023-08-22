@@ -31,7 +31,7 @@ namespace DefaultNamespace.ViewsUi
             m_skillObject.Upgrade();
             m_skillViewHolder.ClosePanel();
             m_skillViewHolder.RemoveSkillFromList(m_skillObject);
-            AudioSource.PlayClipAtPoint(m_selectedSkillAudio, GameManager.instance.m_PlayerTransform.position);
+            //AudioSource.PlayClipAtPoint(m_selectedSkillAudio, GameManager.instance.m_PlayerTransform.position);
         }
     }
 }

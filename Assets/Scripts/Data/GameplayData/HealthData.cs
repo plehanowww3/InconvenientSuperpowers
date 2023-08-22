@@ -1,4 +1,6 @@
 using System;
+using DefaultNamespace.MVVM.ViewModel;
+using Zenject;
 
 namespace DefaultNamespace.Data
 {
@@ -9,11 +11,12 @@ namespace DefaultNamespace.Data
         public int AddRegenHp;
         public float AddRegenRate;
         public int InstaHeal;
-
+        
         public HealthData()
         {
             SetData(this);
         }
+        
         public HealthData(int _addMaxHp, int _addRenegHp, float _addRegenRate, int _instaHeal)
         {
             SetData(this);

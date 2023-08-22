@@ -7,7 +7,7 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.m_shakeCamera = this;
+        //GameManager.instance.m_shakeCamera = this;
     }
 
     public void Shake()

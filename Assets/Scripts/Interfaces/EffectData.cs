@@ -1,5 +1,7 @@
 using System;
+using DefaultNamespace.MVVM.ViewModel;
 using UnityEngine;
+using Zenject;
 
 namespace DefaultNamespace.Data
 {
@@ -8,6 +10,14 @@ namespace DefaultNamespace.Data
     {
         public EffectData Instance;
 
+        private EffectsViewModel m_effectViewModel;
+
+        [Inject]
+        public void InjectViewModel(EffectsViewModel _effectsViewModel)
+        {
+            m_effectViewModel = _effectsViewModel;
+        }
+        
         public void SetData(EffectData _effectData)
         {
             Instance = _effectData;
@@ -16,7 +26,7 @@ namespace DefaultNamespace.Data
         public void Upgrade()
         {
             if (Instance != null)
-                GameManager.instance.Upgrade(Instance);
+                m_effectViewModel.AddBuff.Execute(Instance);
         }
     }
 }

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using DefaultNamespace.Abstract;
+using DefaultNamespace.MVVM.ViewModel;
+using UniRx;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace DefaultNamespace.ViewsUi
@@ -11,6 +14,14 @@ namespace DefaultNamespace.ViewsUi
         [SerializeField] private Animator m_animator;
 
         [SerializeField] private List<SkillScriptableObjectAbstract> m_skills;
+
+        [Inject]
+        private ExperienceViewModel m_experienceViewModel;
+
+        private void Awake()
+        {
+            m_experienceViewModel.ShowLvlUpRewards.Subscribe(_ => ShowPanel());
+        }
 
         public void SetSkills()
         {
